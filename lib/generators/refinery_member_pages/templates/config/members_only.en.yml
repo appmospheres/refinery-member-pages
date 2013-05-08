@@ -1,0 +1,9 @@
+en:
+  refinery:
+    admin:
+      pages:
+        form_advanced_options:
+          members_only_description_title: 'Access restricted to members'
+          members_only_description_heading: 'members_only'
+          members_only_description: 'Access restricted to members'
+          members_only_description_help: 'Make this page restricted to members only.'

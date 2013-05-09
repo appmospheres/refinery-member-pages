@@ -1,4 +1,6 @@
 en:
+  notice:
+    login_required: 'This page is for members only. Please login to access the content.'
   refinery:
     admin:
       pages:

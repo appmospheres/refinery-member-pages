@@ -12,6 +12,7 @@ module RefineryMemberPages
         copy_file 'templates/config/pages_controller_decorator.rb', 'app/decorators/controllers/refinery/pages_controller_decorator.rb'
         copy_file 'templates/config/page_decorator.rb', 'app/decorators/models/refinery/page_decorator.rb'
         copy_file 'templates/config/_form_advanced_options.html.erb', 'app/views/refinery/admin/pages/_form_advanced_options.html.erb'
+        copy_file 'templates/config/_page.html.erb', 'app/views/refinery/admin/pages/_page.html.erb'
       end
 
     end

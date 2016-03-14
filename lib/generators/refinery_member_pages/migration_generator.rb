@@ -2,42 +2,37 @@ require 'rails/generators'
 require 'rails/generators/migration'
 
 module RefineryMemberPages
+  class MigrationGenerator < Rails::Generators::Base
+    include Rails::Generators::Migration
 
-    class MigrationGenerator < Rails::Generators::Base
+    desc 'Generates migration for the Refinery::Page members-only field'
 
-      include Rails::Generators::Migration
-
-      desc "Generates migration for the Refinery::Page members-only field"
-
-      def self.orm
-        Rails::Generators.options[:rails][:orm]
-      end
-
-      def self.source_root
-        File.join(File.dirname(__FILE__), 'templates', (orm.to_s unless orm.class.eql?(String)) )
-      end
-
-      def self.orm_has_migration?
-        [:active_record].include? orm
-      end
-
-      def self.next_migration_number(dirname)
-        if ActiveRecord::Base.timestamped_migrations
-          migration_number = Time.now.utc.strftime("%Y%m%d%H%M%S").to_i
-          migration_number += 1
-          migration_number.to_s
-        else
-          "%.3d" % (current_migration_number(dirname) + 1)
-        end
-      end
-
-      def create_migration_file
-        if self.class.orm_has_migration?
-          migration_template 'migration.rb', 'db/migrate/add_members_only_to_refinery_pages'
-        end
-      end
-
+    def self.orm
+      Rails::Generators.options[:rails][:orm]
     end
 
-end
+    def self.source_root
+      File.join(File.dirname(__FILE__), 'templates', (orm.to_s unless orm.class.eql?(String)) )
+    end
 
+    def self.orm_has_migration?
+      [:active_record].include? orm
+    end
+
+    def self.next_migration_number(dirname)
+      if ActiveRecord::Base.timestamped_migrations
+        migration_number = Time.now.utc.strftime("%Y%m%d%H%M%S").to_i
+        migration_number += 1
+        migration_number.to_s
+      else
+        "%.3d" % (current_migration_number(dirname) + 1)
+      end
+    end
+
+    def create_migration_file
+      if self.class.orm_has_migration?
+        migration_template 'migration.rb', 'db/migrate/add_members_only_to_refinery_pages.rb'
+      end
+    end
+  end
+end

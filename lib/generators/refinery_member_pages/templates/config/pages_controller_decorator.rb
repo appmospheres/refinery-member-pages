@@ -3,9 +3,12 @@ Refinery::PagesController.class_eval do
 
   protected
   def check_members_only
-    if page.members_only? && !signed_in?
+    # signed_in_method? must be defined in your application controller
+    if page.members_only? && !signed_in_method?
       flash[:notice] = t('login_required', scope: 'notice')
-      redirect_to root_url
+      # login_member_path must be defined in your routes.rb
+      # previous_url must be a hidden field in the login form of members
+      redirect_to main_app.login_member_path(previous_url: params[:path])
       false
     end
     true

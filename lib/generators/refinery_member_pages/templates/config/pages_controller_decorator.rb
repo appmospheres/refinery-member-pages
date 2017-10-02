@@ -1,5 +1,5 @@
 Refinery::PagesController.class_eval do
-  before_filter :check_members_only
+  before_action :check_members_only
 
   protected
   def check_members_only
